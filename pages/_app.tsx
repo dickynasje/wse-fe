@@ -6,7 +6,10 @@ import { extendTheme, baseTheme } from '@chakra-ui/react'
 const colors = {
   initialColorMode: "dark",
 }
-const theme = extendTheme({ colors })
+const fonts = {
+  body:"'Quicksand',sans-serif",
+}
+const theme = extendTheme({ colors, fonts })
 
 export default function App({ Component, pageProps }: AppProps) {
 return (

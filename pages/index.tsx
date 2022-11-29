@@ -1,11 +1,30 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Input, useColorMode } from '@chakra-ui/react'
+import { Box, Input, useColorMode } from '@chakra-ui/react'
 import { InputGroup } from '@chakra-ui/react'
 import { Button } from '@chakra-ui/react'
+import { useState } from 'react'
+
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
+  const [value, setValue] = useState("");
+  const [data, setData] =useState<String[] | null>();
+  
+  const queryHandle = (event: any) =>{
+    setValue(event.target.value)
+    console.log(event)
+  }
+  const handleButtonWibu = () => {
+    if (value!="") {
+      setData(["a","b"]);
+      console.log(data);
+      window.location.replace('#resultSearch')
+    }
+    console.log("masukin fungsi backend frontend frontflip backflip disini lakukan magic")
+  }
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,7 +40,14 @@ export default function Home() {
         <p className={styles.description}>
           WSE is a semantic web search engine using myAnimeList as its data. Hence its name WSE (Weaboo Search engine)
         </p>
-        <Input w="80%" placeholder='Search' />
+        <Input w="80%" placeholder='Search' value={value} onChange={queryHandle} />
+
+        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonWibu}>WIBU</Button>
+
+        {data && <Box mt='96' h='100vh' id='resultSearch' >
+          RESULTS
+        </Box>}
+
       </main>
     </div>
   )
