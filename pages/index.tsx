@@ -4,28 +4,38 @@ import styles from '../styles/Home.module.css'
 import { Box, Input, useColorMode } from '@chakra-ui/react'
 import { InputGroup, Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { useState } from 'react'
+import AnimeList from '../components/animelist'
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const [data, setData] =useState<String[] | null>();
+  const [data, setData] =useState<String[]>();
   const [title, setTitle] = useState("");
+  const [Bool, setBool] = useState(false);
   const queryHandle = (event: any) => {
     setTitle(event.target.value)
   }
-  const handleButtonSearch = async () => {
+  const handleButtonSearch = () => {
     if (title!="") {
       console.log(title)
       const obj = {title: {title}}
-      const res = await fetch('http://127.0.0.1:8000/main/',{
+      fetch('http://127.0.0.1:8000/main/',{
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(obj)
-      });
-      const data = await res.json;
-      console.log(data);
-      window.location.replace('#resultSearch')
+        body: JSON.stringify(obj.title)
+      }).then(res => {
+        if(!res.ok){
+          throw Error('FETCH GAGAL');
+        }
+        return res.json();
+      }).then(list => {
+        setData(list.result);
+        console.log(list.result);
+        setBool(true);
+      })
+      .catch(err => {
+
+      })
     }
-    console.log("masukin fungsi backend frontend frontflip backflip disini lakukan magic")
   }
 
   const handleButtonAnime = () => {
@@ -64,8 +74,8 @@ export default function Home() {
 
         <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Search</Button>
 
-        {data && <Box mt='96' h='100vh' id='resultSearch' >
-          RESULTS
+        {data && <Box mt='16' h='100vh' id='resultSearch' >
+          <AnimeList data={data}/>
         </Box>}
 
       </main>
