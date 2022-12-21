@@ -108,6 +108,46 @@
   margin-left: 0.5rem;
 }
 
+.anime_title{
+  font-size: 4rem;
+}
+
+
+.main_info{
+  margin-top: 50px;
+  float: right;
+}
+
+.main_left{
+  width: 190px; 
+  margin-top: 25px;
+  margin-right: 20px;
+  float: left;
+}
+
+.score{
+  border: #111;
+  border-style:solid;
+  border-width: thin;
+  margin: auto;
+  margin-top: 10px;
+  width: 85%;
+  border-radius: 50%;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.info_title{
+  border-bottom: double;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.teks{
+  text-align: justify;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

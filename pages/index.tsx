@@ -1,16 +1,20 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Box, Input, useColorMode } from '@chakra-ui/react'
+import { Box, Divider, Input, useColorMode } from '@chakra-ui/react'
 import { InputGroup, Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { useState } from 'react'
-import AnimeList from '../components/animelist'
+import AnimeList from '../components/AnimeList'
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
   const [data, setData] =useState<String[]>();
   const [title, setTitle] = useState("");
   const [Bool, setBool] = useState(false);
+  const [studioData, setStudioData] = useState<String[]>();
+  const [animeSearch, setAnimeSearch] = useState(true);
+  const [studioSearch, setStudioSearch] = useState(false);
+  const [advancedSearch, setAdvancedSearch] = useState(false);
   const queryHandle = (event: any) => {
     setTitle(event.target.value)
   }
@@ -29,7 +33,7 @@ export default function Home() {
         return res.json();
       }).then(list => {
         setData(list.result);
-        console.log(list.result);
+        console.log(list);
         setBool(true);
       })
       .catch(err => {
@@ -39,13 +43,19 @@ export default function Home() {
   }
 
   const handleButtonAnime = () => {
-    
+    setStudioSearch(false);
+    setAdvancedSearch(false);
+    setAnimeSearch(true);
   }
   const handleButtonStudio = () => {
-    
+    setStudioSearch(true);
+    setAdvancedSearch(false);
+    setAnimeSearch(false);
   }
   const handleButtonAdvanced= () => {
-    
+    setStudioSearch(false);
+    setAdvancedSearch(true);
+    setAnimeSearch(false);
   }
   return (
     <div className={styles.container}>
@@ -70,9 +80,19 @@ export default function Home() {
         </Stack>
         </Box>
 
-        <Input w="80%" className="anime-search" placeholder='Search' value={title} onChange={queryHandle} />
-
-        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Search</Button>
+        {animeSearch && <Box w='80%' textAlign='center'>
+        <Input w="100%" className="anime-search" placeholder='Search' value={title} onChange={queryHandle} />
+        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Search</Button> 
+        </Box>}
+        {studioSearch && <Box w='80%' textAlign='center'>
+        <Input w="100%" className="anime-search" placeholder='Search Studio' value={title} onChange={queryHandle} />
+        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Studio Search</Button> 
+        </Box>}
+        {advancedSearch && <Box w='80%' textAlign='center'>
+        <Input w="100%" className="anime-search" placeholder='Search Filters' value={title} onChange={queryHandle} />
+        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Advanced Search</Button> 
+        </Box>}
+        
 
         {data && <Box mt='16' h='100vh' id='resultSearch' >
           <AnimeList data={data}/>
