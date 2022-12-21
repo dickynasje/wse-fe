@@ -132,7 +132,6 @@
   margin: auto;
   margin-top: 10px;
   width: 85%;
-  border-radius: 50%;
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
@@ -142,11 +141,23 @@
   border-bottom: double;
   margin-top: 15px;
   font-weight: bold;
+  text-align: left;
 }
 
 .teks{
   text-align: justify;
 }
+
+
+.filter_main{
+  margin-top: 15px;
+}
+
+.tes{
+  width: 100px;
+  text-align: left;
+}
+
 
 @media (max-width: 600px) {
   .grid {
