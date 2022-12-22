@@ -10,9 +10,8 @@ const AnimeList = ({data}: {data:AnimeData[]}) => {
         <div>
           <Grid templateColumns='repeat(5, 1fr)' gap={6}>
             {data.map((datas, index) => (
-              <GridItem pl='2'>
-                <div className="animelist" key={index}>
-                  
+              <GridItem pl='2' key={index}>
+                <div className="animelist" >
                     <Link href={`/ex:${datas.animeId.value.slice(24, )}`}>
                     <img src={datas?.main_picture===undefined ? "-" : datas?.main_picture.value} alt="" />
                     <h2 className={styles.title_list}>{datas.animeTitle.value}</h2>
