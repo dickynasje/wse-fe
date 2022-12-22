@@ -149,6 +149,10 @@
   text-align: justify;
 }
 
+.sort_title{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
 
 .filter_main{
   margin-top: 15px;
@@ -159,6 +163,22 @@
   text-align: left;
 }
 
+.title_list{
+  text-align: center;
+  font-weight: bold;
+}
+
+.content_title{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.sort_score{
+  display: flex;
+  justify-content: center;
+}
 
 @media (max-width: 600px) {
   .grid {

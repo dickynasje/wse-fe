@@ -1,12 +1,36 @@
-import { Box, Divider, Input, useColorMode, Select } from '@chakra-ui/react'
+import { Box, Divider, Input, useColorMode, Select, Grid, GridItem, Checkbox, CheckboxGroup,Radio, RadioGroup  } from '@chakra-ui/react'
 import { InputGroup, Button, ButtonGroup, Stack, HStack, VStack } from '@chakra-ui/react'
+import { error } from 'console'
+import { useEffect, useState } from 'react'
+import { AdvanceObject } from './AdvanceObject'
 import styles from '../styles/Home.module.css'
+import { Genre } from './AdvanceObject'
 const AdvancedSearch = () => {
+    const [data, setData] = useState<AdvanceObject>()
     const handleButtonAdvancedSearch = () => {
         
     }
     
-    
+    useEffect(() => {
+      fetch('https://wse-be.up.railway.app/main/advance-data').then(res => {
+        if(!res.ok){
+          throw Error('FETCH GAGAL');
+        }
+        return res.json();
+      }).then(list => {
+        setData(list);
+        console.log(list);
+      }).catch(err => {
+
+      })
+    }, [])
+
+    const genreData = data?.genre
+    const handleGenreCheckBox = (e: any) => {
+      console.log(e.target.checked)
+    }
+
+    console.log(data?.genre)
     return (
         
         <Box w='80%' textAlign='center'>
@@ -50,18 +74,6 @@ const AdvancedSearch = () => {
         </HStack>
 
         <HStack className={styles.filter_main}>
-        <p className={styles.tes}><strong>Rated</strong></p>
-        <Select placeholder='Select Rating'>
-          <option value='1'>G - All Ages</option>
-          <option value='2'>PG - Children</option>
-          <option value='3'>PG-13 - Teens 13 or Older</option>
-          <option value='1'>R - 17+ (Violence & Profanity)</option>
-          <option value='2'>R+ - Mild Nudity</option>
-          <option value='3'>Rx - Hentai</option>
-        </Select>
-        </HStack>
-
-        <HStack className={styles.filter_main}>
         <p className={styles.tes}><strong>Season</strong></p>
         <Select placeholder='Select Season'>
           <option value='1'>Spring</option>
@@ -87,7 +99,58 @@ const AdvancedSearch = () => {
 
         <h1 className={styles.info_title}>Content Filter</h1>
         
+        <Grid templateColumns='repeat(3, 1fr)' gap={10}>
+          <GridItem w='100%' >
+          <h1 className={styles.content_title}>Genre</h1>
+            <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+              {genreData?.map((datas, index) => (
+                <GridItem pl='2'>
+                  <div className="genrelist" key={index}>
+                    
+                      {/* <Link href={`/ex:${datas.animeId.value.slice(24, )}`}> */}
+                    <Checkbox onChange={handleGenreCheckBox} value={datas?.genreId.value.slice(24, )} >{datas?.genreName.value}</Checkbox>
+                      
+                      {/* </Link> */}
+                  </div>
+                </GridItem>
+              ))}
+            </Grid>
+          </GridItem>
 
+          <GridItem w='100%'>
+          <h1 className={styles.content_title}>Themes</h1>
+            <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+              <Checkbox >Checkbox</Checkbox>
+              <Checkbox >Checkbox</Checkbox>
+              <Checkbox >Checkbox</Checkbox>
+              <Checkbox >Checkbox</Checkbox>
+            </Grid>
+          </GridItem>
+
+          <GridItem w='100%'>
+          <h1 className={styles.content_title}>Demographics</h1>
+            <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+              <Checkbox >Checkbox</Checkbox>
+              <Checkbox >Checkbox</Checkbox>
+              <Checkbox >Checkbox</Checkbox>
+              <Checkbox >Checkbox</Checkbox>
+            </Grid>
+          </GridItem>
+        </Grid>
+
+        <p className={styles.sort_title}><strong>Sort by Score</strong></p>
+        <div className={styles.sort_score}>
+          <RadioGroup className={styles.sort_score} defaultValue='desc'>
+            <Stack spacing={5} direction='row'>
+              <Radio  colorScheme='blue' value='desc'>
+                Descending
+              </Radio>
+              <Radio colorScheme='blue' value='asc'>
+                Ascending
+              </Radio>
+            </Stack>
+          </RadioGroup>
+        </div>
         <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonAdvancedSearch}>Search</Button> 
         </Box>
 
