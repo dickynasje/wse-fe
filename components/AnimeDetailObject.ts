@@ -6,12 +6,15 @@ export interface AnimeDetailObject {
     source: Source
     members: Members
     favorites: Favorites
+    episodes: Episodes
     episode_duration: EpisodeDuration
+    rating: Rating
     sfw: Sfw
     approved: Approved
     start_year: StartYear
     start_season: StartSeason
     real_start_date: RealStartDate
+    real_end_date: RealEndDate
     demographic: Demographic
     theme: Theme
     studio: Studio
@@ -63,9 +66,20 @@ export interface AnimeDetailObject {
     type: string
     value: string
   }
-  
+
+  export interface Episodes {
+    datatype: string
+    type: string
+    value: string
+  }
+
   export interface EpisodeDuration {
     datatype: string
+    type: string
+    value: string
+  }
+
+  export interface Rating {
     type: string
     value: string
   }
@@ -98,7 +112,13 @@ export interface AnimeDetailObject {
     type: string
     value: string
   }
-  
+
+  export interface RealEndDate {
+    datatype: string
+    type: string
+    value: string
+  }
+
   export interface Demographic {
     type: string
     value: string
