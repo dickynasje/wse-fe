@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css'
+import styles from '../../../styles/Home.module.css'
 import { Box, Input, useColorMode, Image, Text } from '@chakra-ui/react'
 import { InputGroup, Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
@@ -36,8 +36,8 @@ export default function StudioDetail(){
 
   return(
     <div>
-        {data && <Box>
-            <h1>ANIME MADE BY {studioId.slice(3, )}</h1>
+        {data && <Box textAlign='center'>
+            <h1 className={styles.anime_title}>ANIME MADE BY {studioId.slice(3, )}</h1>
             <AnimeList data={data}/>
             </Box>}
     </div>

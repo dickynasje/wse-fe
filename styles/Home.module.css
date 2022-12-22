@@ -177,13 +177,13 @@
 
 .main_right{
   display:grid;
-  /* float:right; */
 }
 
 .info_det{
   border-bottom: double;
   margin-top: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  padding-top: 20px;
   font-size:2rem;
   font-weight: bold;
   text-align: left;
@@ -196,9 +196,6 @@
 
 .character{
   font-size:2rem;
-}
-.character_value{
-  
 }
 
 @media (max-width: 600px) {
