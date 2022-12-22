@@ -2,9 +2,24 @@ import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import { Box, Input, useColorMode, Image, Text} from '@chakra-ui/react'
 import { InputGroup, Button, ButtonGroup, Stack } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { AnimeDetailObject } from '../../components/AnimeDetailObject'
 
-export default function animeDetail() {
+export default function AnimeDetail() {
+    const router = useRouter();
+    const [anime_id, setAnime_id] = useState("");
+    const [data, setData] =useState<AnimeDetailObject[]>();
+
+    useEffect(()=> {
+    setAnime_id(router.query.anime_id as string);
+    }, [router.query])
+    //getAnimeId
+    console.log(anime_id); 
+    
+    if(!anime_id){
+        console.log("")
+    }
     return (
         <div className={styles.container}>
             <Head>
@@ -53,12 +68,7 @@ export default function animeDetail() {
                 </div>
                 <h1 className={styles.anime_title}>Boruto: Naruto Next Generations </h1>
                 <Text  className={styles.teks}>
-                Following the successful end of the Fourth Shinobi World War, Konohagakure has been enjoying a period of peace, prosperity, and extraordinary technological advancement. This is all due to the efforts of the Allied Shinobi Forces and the village's Seventh Hokage, Naruto Uzumaki. Now resembling a modern metropolis, Konohagakure has changed, particularly the life of a shinobi. Under the watchful eye of Naruto and his old comrades, a new generation of shinobi has stepped up to learn the ways of the ninja.
-
-Boruto Uzumaki is often the center of attention as the son of the Seventh Hokage. Despite having inherited Naruto's boisterous and stubborn demeanor, Boruto is considered a prodigy and is able to unleash his potential with the help of supportive friends and family. Unfortunately, this has only worsened his arrogance and his desire to surpass Naruto which, along with his father's busy lifestyle, has strained their relationship. However, a sinister force brewing within the village may threaten Boruto's carefree life.
-
-New friends and familiar faces join Boruto as a new story begins.
-                </Text>
+                I&apos;m using a custom font-size value for this text</Text>
             </div>
 
             
