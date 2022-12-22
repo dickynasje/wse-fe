@@ -1,22 +1,26 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
-import { Box, Input, useColorMode, Image, Text } from '@chakra-ui/react'
+import React from 'react'
+import ReactPlayer from 'react-player'
+import { Box, Input, useColorMode, Image, Text, AspectRatio, GridItem, Grid } from '@chakra-ui/react'
 import { InputGroup, Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { AnimeDetailObject } from '../../components/AnimeDetailObject'
+import { CharacterList } from '../../components/CharacterList'
 
 export default function AnimeDetail() {
   const router = useRouter();
   const [animeId, setAnimeId] = useState("");
   const [data, setData] = useState<AnimeDetailObject>();
+  const [data2, setData2] = useState<CharacterList[]>([]);
   const [Bool, setBool] = useState(false);
 
   useEffect(() => {
     setAnimeId(router.query.anime_id as string);
     if (animeId) {
       const obj = {animeId: { animeId } }
-      fetch('http://127.0.0.1:8000/main/detail', {
+      fetch('https://wse-be.up.railway.app/main/detail', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj.animeId)
@@ -30,6 +34,7 @@ export default function AnimeDetail() {
         setData(list.result[0]);
         console.log("ini data")
         console.log(data)
+        setData2(list.character)
         setBool(true);
       })
         .catch(err => {
@@ -38,6 +43,8 @@ export default function AnimeDetail() {
     }
   }, [animeId, router.query])
   //getAnimeId
+  console.log(data2)
+
   if(data){
     console.log("data ada")
   }
@@ -87,6 +94,27 @@ export default function AnimeDetail() {
           <Text className={styles.teks}>
           {data?.synopsis===undefined ? "?" : data.synopsis.value}
           </Text>
+          <h3 className={styles.info_det}>Trailer</h3>
+          {data?.trailer_url===undefined ? " " :
+          <AspectRatio maxW='560px' ratio={16 / 9}>
+            <ReactPlayer url={data.trailer_url.value} controls={true} />
+
+          </AspectRatio>
+          }
+          <br />
+          <h3 className={styles.info_det}>Characters</h3>
+          <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+              
+            {data2?.map((datas, index) => (
+              <GridItem pl='2'>
+                  <div className="animelist" key={index}>
+                      <p className={styles.character}>{datas?.charactersLabel?.value}</p>
+                      <h2>{datas?.genderLabel?.value}</h2>
+                      <p>{datas?.actorsLabel?.value}</p>
+                  </div>
+                </GridItem>
+            ))}
+          </Grid>
         </div>
       </div>
 
