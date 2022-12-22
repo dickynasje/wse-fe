@@ -7,6 +7,7 @@ import styles from '../styles/Home.module.css'
 import { Genre } from './AdvanceObject'
 const AdvancedSearch = () => {
     const [data, setData] = useState<AdvanceObject>()
+    const arrayGenre = new Array();
     const handleButtonAdvancedSearch = () => {
         
     }
@@ -28,6 +29,7 @@ const AdvancedSearch = () => {
     const genreData = data?.genre
     const handleGenreCheckBox = (e: any) => {
       console.log(e.target.checked)
+      
     }
 
     console.log(data?.genre)
