@@ -92,7 +92,7 @@ export default function Home() {
         {advancedSearch && <AdvancedSearch/>}
         
 
-        {data && <Box mt='16' h='100vh' id='resultSearch' >
+        {data && animeSearch && <Box mt='16' h='100vh' id='resultSearch' >
           <AnimeList data={data}/>
         </Box>}
 

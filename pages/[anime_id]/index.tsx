@@ -51,7 +51,7 @@ export default function AnimeDetail() {
       </Head>
       <div className={styles.main_info}>
         <div className={styles.main_left} >
-          <Image src={data?.main_picture.value}/>
+          <Image alt="gambar" src={data?.main_picture.value}/>
           <h2 className={styles.score}>Score : {data?.score.value}</h2>
           <div>
             <h3 className={styles.info_title}>Alternative Title</h3>
