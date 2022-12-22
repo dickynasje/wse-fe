@@ -25,7 +25,7 @@ export default function Home() {
     if (title!="") {
       console.log(title)
       const obj = {title: {title}}
-      fetch('http://127.0.0.1:8000/main/',{
+      fetch('https://wse-be.up.railway.app/main/',{
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj.title)

@@ -16,7 +16,7 @@ export default function AnimeDetail() {
     setAnimeId(router.query.anime_id as string);
     if (animeId) {
       const obj = {animeId: { animeId } }
-      fetch('http://127.0.0.1:8000/main/detail', {
+      fetch('https://wse-be.up.railway.app/main/detail', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj.animeId)

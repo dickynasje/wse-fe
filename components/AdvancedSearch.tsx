@@ -75,9 +75,9 @@ const AdvancedSearch = () => {
         <p className={styles.tes}><strong>Year</strong></p>
         <select className={styles.new} >
           <option value='1'> Select Year </option>
-          {[...Array(107).keys()].map((item) => {
+          {[...Array(107).keys()].map((item, index) => {
             return (  
-              <option value={2023 - item}>
+              <option value={2023 - item} key={index}>
                 {2023 - item}
               </option>
             )

@@ -12,7 +12,7 @@ const StudioSearch = () => {
     const handleButtonStudioSearch = () => {
         if(studio!=""){
             const obj = {studio: {studio}}
-      fetch('http://127.0.0.1:8000/main/studio',{
+      fetch('https://wse-be.up.railway.app/main/studio',{
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj.studio)

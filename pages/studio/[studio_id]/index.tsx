@@ -15,7 +15,7 @@ export default function StudioDetail(){
         setStudioId(router.query.studio_id as string);
         if(studioId){
             const obj = {studioId: { studioId } }
-        fetch('http://127.0.0.1:8000/main/anime-studio', {
+        fetch('https://wse-be.up.railway.app/main/anime-studio', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(obj.studioId)
