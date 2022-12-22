@@ -175,9 +175,30 @@
   font-weight: bold;
 }
 
+.main_right{
+  display:grid;
+  /* float:right; */
+}
+
+.info_det{
+  border-bottom: double;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size:2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
 .sort_score{
   display: flex;
   justify-content: center;
+}
+
+.character{
+  font-size:2rem;
+}
+.character_value{
+  
 }
 
 @media (max-width: 600px) {
