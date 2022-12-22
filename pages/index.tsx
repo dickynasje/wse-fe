@@ -1,14 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Box, Divider, Input, useColorMode } from '@chakra-ui/react'
-import { InputGroup, Button, ButtonGroup, Stack } from '@chakra-ui/react'
+import { Box, Divider, Input, useColorMode, Select } from '@chakra-ui/react'
+import { InputGroup, Button, ButtonGroup, Stack, HStack, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import AnimeList from '../components/AnimeList'
+import AdvancedSearch from '../components/AdvancedSearch'
+import StudioSearch from '../components/StudioSearch'
+import { AnimeData } from '../components/animeObject'
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const [data, setData] =useState<String[]>();
+  const [data, setData] =useState<AnimeData[]>();
   const [title, setTitle] = useState("");
   const [Bool, setBool] = useState(false);
   const [studioData, setStudioData] = useState<String[]>();
@@ -84,14 +87,9 @@ export default function Home() {
         <Input w="100%" className="anime-search" placeholder='Search' value={title} onChange={queryHandle} />
         <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Search</Button> 
         </Box>}
-        {studioSearch && <Box w='80%' textAlign='center'>
-        <Input w="100%" className="anime-search" placeholder='Search Studio' value={title} onChange={queryHandle} />
-        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Studio Search</Button> 
-        </Box>}
-        {advancedSearch && <Box w='80%' textAlign='center'>
-        <Input w="100%" className="anime-search" placeholder='Search Filters' value={title} onChange={queryHandle} />
-        <Button colorScheme='cyan' variant='outline' mt='4' onClick={handleButtonSearch}>Advanced Search</Button> 
-        </Box>}
+        {studioSearch && <StudioSearch/>}
+
+        {advancedSearch && <AdvancedSearch/>}
         
 
         {data && <Box mt='16' h='100vh' id='resultSearch' >
