@@ -59,7 +59,7 @@ export default function AnimeDetail() {
       <div className={styles.main_info}>
         <div className={styles.main_left} >
           <Image alt="gambar" src={data?.main_picture===undefined ? "-" : data?.main_picture.value}/>
-          <h2 className={styles.score}>Score : {data?.score.value}</h2>
+          <h2 className={styles.score}>Score : {data?.score===undefined ? "?" : data?.score.value}</h2>
           <div>
             <h3 className={styles.info_title}>Alternative Title</h3>
             <p><strong>Japanese: </strong>{data?.title_japanese===undefined ? "-" : data?.title_japanese.value}</p>
@@ -71,9 +71,9 @@ export default function AnimeDetail() {
             <p><strong>Episodes: </strong>{data?.episodes===undefined ? "?" : data?.episodes.value}</p>
             <p><strong>Status: </strong>{data?.status.value}</p>
             <p><strong>Aired: </strong>{data?.real_start_date===undefined ? "?" : data?.real_start_date.value} to {data?.real_end_date===undefined ? "?" : data?.real_end_date.value}</p>
-            <p><strong>Premiered: </strong>{data?.start_season.value} {data?.start_year.value}</p>
+            <p><strong>Premiered: </strong>{data?.start_season===undefined ? "?" : data?.start_season.value} {data?.start_year===undefined ? "?" : data?.start_year.value}</p>
             <p><strong>Broadcast: </strong>-</p>
-            <p><strong>Producers: </strong>{data?.producer.value}</p>
+            <p><strong>Producers: </strong>{data?.producer===undefined ? "?" : data?.producer.value}</p>
             <p><strong>Licensors: </strong>{data?.licensor===undefined ? "?" : data?.licensor.value}</p>
             <p><strong>Studios: </strong>{data?.studio===undefined ? "?" : data?.studio.value}</p>
             <p><strong>Source: </strong>{data?.source===undefined ? "?" : data.source.value}</p>
