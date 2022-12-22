@@ -106,8 +106,8 @@ export default function AnimeDetail() {
           <Grid templateColumns='repeat(2, 1fr)' gap={6}>
               
             {data2?.map((datas, index) => (
-              <GridItem pl='2'>
-                  <div className="animelist" key={index}>
+              <GridItem pl='2' key={index}>
+                  <div className="animelist" >
                       <p className={styles.character}>{datas?.charactersLabel?.value}</p>
                       <h2>{datas?.genderLabel?.value}</h2>
                       <p>{datas?.actorsLabel?.value}</p>
